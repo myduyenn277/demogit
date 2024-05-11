@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" >
+    <title>List of borrowedCard</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+        table, th, td{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-decoration: none; background-color: burlywood; text-align: center;" >LIST OF BORROWED CARD</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Id Borrowed Card</th>
+                <th>Borrowed date</th>
+                <th>Return date</th>
+                <th>Book number</th>
+                <th>Student</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each=" borrowedCard : ${borrowedCardList}">
+                <td th:text="${borrowedCard.idBorrowedCard}"></td>
+                <td th:text="${borrowedCard.borrowedDate}"></td>
+                <td th:text="${borrowedCard.returnDate}"></td>
+                <td th:text="${borrowedCard.bookNum}"></td>
+                <td th:text="${borrowedCard.student.name}"> </td>
+                <td><button><a th:href="@{/borrowedCard/updateBorrowedCard/__${borrowedCard.idBorrowedCard}__}">View</a></button></td>
+                <td><button><a th:href="@{/borrowedCard/deleteBorrowedCard/__${borrowedCard.idBorrowedCard}__}">Delete</a></button></td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <button>
+            <a th:href="@{/borrowedCard/addBorrowedCard}">Create</a>
+        </button>
+    </div>
+</body>
+</html>

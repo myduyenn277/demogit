@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" >
+    <title>List of borrowed card</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+    <h1 style="text-decoration: none; background-color: burlywood; text-align: center;" >ADD BORROWED CARD</h1>
+    <form th:action="@{/borrowedCard/addBorrowedCard/action}" method="post" th:object="${borrowedCard}">
+        <!-- <div>
+            <label><b>Borrowed Date</b></label>
+            <br>
+            <input type="date" th:field="*{borrowedDate}">
+        </div> -->
+        <div>
+            <label><b>Return Date</b></label>
+            <br>
+            <input type="date" name="returnDate">
+        </div>
+        <div>
+            <label><b>Book Number</b></label>
+            <br>
+            <input type="number" th:field="*{bookNum}">
+        </div>
+        <div >
+            <label><b>Student</b></label>
+            <br>
+            <select name="studentid">
+               </option>
+               <!-- <option selected th:value="0">Student</option> -->
+               <option th:each="student : ${studentList}" th:value="${student.getIdStudent()}" th:text="${student.getName()}"></option>
+            </select>
+        </div>
+        <!-- <div>
+            <select name="" id="">
+                <option value=""></option>
+            </select>
+        </div> -->
+        <button style="background-color: rgb(196, 154, 99); border: none; border-radius: 5%; width: 10%;" type="submit" >Add</button>
+        <button style="background-color: rgb(196, 154, 99); border: none; border-radius: 5%; width: 10%;" type="reset">Reset</button>
+    </form>
+</body>
+</html>

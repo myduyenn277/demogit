@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>List of borrowedCard</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <!-- @{/student/updateStudent/__${student.idStudent}__/action} -->
+    <form th:action="@{/borrowedCard/updateBorrowedCard/__${borrowedCard.idBorrowedCard}__/action}" th:method="post"
+        th:object="${borrowedCard}">
+        <h1 style="text-decoration: none; background-color: burlywood; text-align: center;">Borrowed Card</h1>
+        <div>
+            <label>Borrowed date</label>
+            <input type="date" th:field="*{borrowedDate}" th:value="${borrowedCard.borrowedDate}">
+        </div>
+        <div>
+            <label>Return date</label>
+            <input type="date" th:field="*{returnDate}" th:value="${borrowedCard.returnDate}">
+        </div>
+        <div>
+            <label>Book Number</label>
+            <input type="number" th:field="*{bookNum}" th:value="${borrowedCard.bookNum}">
+        </div>
+        <div>
+            <label>Choose student</label>
+            <!-- <select name="" id="">
+                <option th:each="borrowedCard: ${borrowedCard}" th:value="${borrowedCard.student.idStudent}" th:text="${borrowedCard.student.getName()}">
+               </option>
+            </select> -->
+            <select th:field="*{student}">
+                </option>
+                <!-- <option selected th:value="0">Student</option> -->
+                <option th:each="student : ${studentList}" th:value="${student.idStudent}"
+                    th:text="${student.name}"></option>
+            </select>
+        </div>
+        <button type="submit">Update</button>
+        <button type="reset">Reset</button>
+    </form>
+</body>
+
+</html>

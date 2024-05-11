@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" >
+    <title>List of student</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+        table, th, td{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-decoration: none; background-color: rgb(172, 146, 190); text-align: center;" >LIST OF STUDENT</h1>
+    <table style="border: 5%; border-color: black; ">
+        <thead>
+            <tr>
+                <th>Numerical order</th>
+                <th>Id Student</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Class</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr th:each="student, no : ${studentList}">
+                <td th:text="${(no.index)+1}"></td>
+                <td th:text="${student.idStudent}"></td>
+                <td th:text="${student.name}"></td>
+                <td th:text="${student.age}"></td>
+                <td th:text="${student.clasS}"></td>
+                <td><button><a style="text-decoration: none; color: black;" th:href="@{/student/updateStudent/__${student.idStudent}__}">View</a></button></td>
+                <td><button><a style="text-decoration: none; color: black;" th:href="@{/student/deleteStudent/__${student.idStudent}__}">Delete</a></button></td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <button>
+            <a style="text-decoration: none; color: black" th:href="@{/student/addStudent}">Create</a>
+        </button>
+    </div>
+</body>
+</html>
